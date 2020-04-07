@@ -1,0 +1,35 @@
+import pygame
+import random
+
+pygame.init()
+screen = pygame.display.set_mode((400, 400))
+x = 0
+y = 0
+width = 20
+height = 400
+vel = 10
+color = (100, 100, 100)
+run = True
+while run:
+    pygame.time.delay(100)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+
+    if pygame.key.get_pressed()[pygame.K_LEFT] and x>=vel:
+        x -= vel
+    if pygame.key.get_pressed()[pygame.K_RIGHT] and x < 400-width:
+            x += vel
+    if x == 200:
+
+        color = (random.randint(0, 55), random.randint(0, 100), random.randint(0, 100))
+    if x == 0:
+
+        color = (random.randint(0, 200),random.randint(0, 200), random.randint(0, 200))
+
+    screen.fill(0)
+    pygame.draw.rect(screen, color, (x, y, width, height))
+
+    pygame.display.update()
+
+pygame.quit()
